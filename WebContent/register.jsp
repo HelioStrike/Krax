@@ -7,12 +7,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
     <style>
-      .body {
-        height:100%;
-        width:100%;
-      }
-
-      .wrapper {
+    .wrapper {
         height:90%;
         width:100%;
       }

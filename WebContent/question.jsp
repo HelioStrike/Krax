@@ -5,23 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
-<title>Home</title>
+<title><%= request.getAttribute("title") %> - Krax</title>
 <style>
 
 	#maindiv {
 		margin-top:15vh;
-		font-size: 16px;
 	}
 
 	.qbody {
 		font-size: 18px;
-		margin: 20px;
+		margin:20px;
 	}
 
 </style>
+
 </head>
 <body>
-	<div class="ui massive secondary menu" id="indexnav">
+    <div class="ui massive secondary menu" id="indexnav">
       <div class="ui container">
       
         <a class="header item" href="/Krax/home">
@@ -45,27 +45,22 @@
         </div>
       </div>
     </div>
-	
-	<div class="ui container" id="maindiv">
-	<%
-		int ids[] = (int[]) request.getAttribute("ids");
-		String askers[] = (String[]) request.getAttribute("askers");
-		String titles[] = (String[]) request.getAttribute("titles");
-		String bodies[] = (String[]) request.getAttribute("bodies");
-		String dates[] = (String[]) request.getAttribute("dates");
 
-	%>
-	
-	<% 	for(int i = 0; i < Integer.parseInt(request.getAttribute("count").toString()); i++) { %>
-			<div class="ui segment">
-				<div class="ui huge header"><a href="/Krax/question?id=<%= ids[i] %>"><%= titles[i] %></a></div>
-				<p class="qbody"><%= bodies[i].substring(0, (bodies[i].length() > 50)? 50: bodies[i].length()) %>...</p>
-				<p>-<a href="/Krax/users?username=<%= askers[i] %>"><%= askers[i] %></a></p>
-			</div>
-	<% 	}	%>
+	<div class="ui container" id="maindiv">
+		<div class="ui segment">
+			<div class="ui huge header"><a href="/Krax/question?id=<%= request.getAttribute("id") %>"><%= request.getAttribute("title") %></a></div>
+			<div class="qbody"><%= request.getAttribute("body") %></div>
+			<div class="ui right floated">-<a href="/Krax/users?username=<%= request.getAttribute("asker") %>"><%= request.getAttribute("asker") %></a></div>
+			<br/>
+			<div class="ui right floated"><b>Asked on:</b> <%= request.getAttribute("dt_created") %></div>
+			<a href="/Krax/answer?id=<%= request.getAttribute("id") %>"><div class="ui button right floated" style="margin: 30px;">Answer</div></a>
+		</div>
 		
+		<br/>
+		<div class="ui huge header">Answers: </div>
 		
 	</div>
-	
+
+
 </body>
 </html>

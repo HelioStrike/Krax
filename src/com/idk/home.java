@@ -78,7 +78,6 @@ public class home extends HttpServlet {
 					count++;
 				}
 				
-				System.out.println(count);
 				request.setAttribute("ids", ids);
 				request.setAttribute("askers", askers);
 				request.setAttribute("titles", titles);

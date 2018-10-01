@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
-<title><%= request.getAttribute("username") %></title>
+<title><%= request.getAttribute("username") %> - Krax</title>
 <style>
 
 	#maindiv {
@@ -29,7 +29,7 @@
           	if(request.getSession().getAttribute("username") != null)
           	{
                 out.println("<a class=\"ui item\" href=\"/Krax/newq\">Ask New Question</a>");          		
-                out.println("<a class=\"ui item\" href=\"/Krax/users?username=" + request.getAttribute("username") + "\">Profile</a>");
+                out.println("<a class=\"ui item\" href=\"/Krax/users?username=" + request.getSession().getAttribute("username") + "\">Profile</a>");
                 out.println("<a class=\"ui item\" href=\"/Krax/logout\">Logout</a>");          		
 			}
           	else
