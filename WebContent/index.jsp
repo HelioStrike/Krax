@@ -32,12 +32,22 @@
       <div class="ui container">
       
         <a class="header item" href="/">
-          <p class="menu-btn" style="color: white; font-size:30px; margin: 10px;"><i class="angle double right icon"></i>Krux</p>
+          <p class="menu-btn" style="color: white; font-size:30px; margin: 10px;"><i class="angle double right icon"></i>Krax</p>
         </a>
 
         <div class="right menu">
-          <a class="ui item" href="/Krax/login">Login</a>
-          <a class="ui item" href="/Krax/register">Register</a>
+          <%
+          	if(request.getSession().getAttribute("username") != null)
+          	{
+                out.println("<a class=\"ui item\" href=\"/Krax/users?username=" + request.getSession().getAttribute("username") + "\">Profile</a>");
+                out.println("<a class=\"ui item\" href=\"/Krax/logout\">Logout</a>");          		
+			}
+          	else
+          	{
+                out.println("<a class=\"ui item\" href=\"/Krax/login\">Login</a>");
+                out.println("<a class=\"ui item\" href=\"/Krax/register\">Register</a>");
+          	}
+          %>
         </div>
       </div>
     </div>

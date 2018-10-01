@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 //@WebServlet("/login")
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,7 +32,15 @@ public class login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("login.jsp");
+		HttpSession session = request.getSession();
+		if(session.getAttribute("username") != null)
+		{
+		    request.getRequestDispatcher("/home").forward(request,response);		
+		}
+		else
+		{
+			response.sendRedirect("login.jsp");
+		}
 	}
 
 	/**
@@ -55,10 +63,12 @@ public class login extends HttpServlet {
 				session.setAttribute("fullname", rs.getString(1));
 				session.setAttribute("email", rs.getString(2));
 				session.setAttribute("username", rs.getString(3));
-				response.sendRedirect("/home");
+				session.setAttribute("password", rs.getString(4));
+				
+			    request.getRequestDispatcher("/home").forward(request,response);
 			} else { 
 				request.setAttribute("status", 1);
-			    request.getRequestDispatcher("success.jsp").forward(request,response);
+			    request.getRequestDispatcher("/login").forward(request,response);
 			}
      
 			con.close();  			

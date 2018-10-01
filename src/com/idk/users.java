@@ -37,41 +37,26 @@ public class users extends HttpServlet {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");  
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test2?user=root","root","sunny123");  
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/krax?user=root","root","sunny123");  
 
 			Statement stmt=con.createStatement();  
-			ResultSet rs=stmt.executeQuery("select * from users");  
+			ResultSet rs=stmt.executeQuery("select * from users where username = \'" + request.getParameter("username") + "\'");  
 			
-			int count = 0;
-			while(rs.next())  
+			if(rs.next())
 			{
-				count++;
+				request.setAttribute("fullname", rs.getString(1));
+				request.setAttribute("email", rs.getString(2));
+				request.setAttribute("username", rs.getString(3));
+				request.getRequestDispatcher("users.jsp").forward(request,response);
 			}
-			
-			
-			System.out.println(count);
-			if(count == 0) { response.sendRedirect("users.jsp");}
 			else
 			{
-				rs=stmt.executeQuery("select * from users");
-				String strset[][] = new String[count][3];
-
-				for(int i = 0; i < count; i++) {
-					rs.next();
-					for(int j = 0; j < 3; j++) {
-						strset[i][j] = rs.getString(j+1);
-					}
-				}
-				
-				request.setAttribute("datalen", count);
-				request.setAttribute("data", strset);
-				
-				con.close();  
-				
-			    request.getRequestDispatcher("users.jsp").forward(request,response);
+				response.sendRedirect("error.jsp");
 			}
-
-		} catch (Exception e) {
+					
+			con.close();
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 
