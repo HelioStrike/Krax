@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -7,38 +7,31 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
     <style>
-      body {
+      .body {
         height:100%;
         width:100%;
-        background: #ee0979;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to bottom, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to bottom, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       }
 
       .wrapper {
-        height: 90%;
-        width: 90%;
+        height:90%;
+        width:100%;
       }
-
-      #midtxt {
-        color: white;
-        font-size: 50px;
-      }
-
     </style>
   </head>
   <body>
-    <div class="ui massive inverted secondary menu" id="indexnav">
+
+    <div class="ui massive secondary menu" id="indexnav">
       <div class="ui container">
       
         <a class="header item" href="/Krax/home">
-          <p class="menu-btn" style="color: white; font-size:30px; margin: 10px;"><i class="angle double right icon"></i>Krax</p>
+          <p class="menu-btn" style="font-size:30px; margin: 10px;"><i class="angle double right icon"></i>Krax</p>
         </a>
 
         <div class="right menu">
           <%
           	if(request.getSession().getAttribute("username") != null)
           	{
+                out.println("<a class=\"ui item\" href=\"/Krax/newq\">Ask New Question</a>");          		
                 out.println("<a class=\"ui item\" href=\"/Krax/users?username=" + request.getSession().getAttribute("username") + "\">Profile</a>");
                 out.println("<a class=\"ui item\" href=\"/Krax/logout\">Logout</a>");          		
 			}
@@ -54,16 +47,26 @@
 
     <div class="ui middle aligned grid wrapper">
       <div class="column">
-        <div class="ui center aligned container">
-          <div class="ui massive header" id="midtxt">
-              Get Started.
+        <div class="ui text container">
+          <div class="ui segment">
+            <div class="ui center aligned huge header">New Question</div>
+            <form class="ui form" action="newq" method="post">
+              <div class="field">
+                <label>Title</label>
+                <input type="text" name="title" placeholder="Title">
+              </div>
+              <div class="field">
+                <label>Password</label>
+                <textarea name="body" placeholder="Body"></textarea>
+              </div>
+              <div class="ui center aligned container">
+                <button class="ui button" type="submit">Submit</button>
+              </div>
+            </form>
           </div>
-          <a href="/Krax/login"><div class="ui massive button inverted">Login</div></a>
-          <a href="/Krax/register"><div class="ui massive button inverted">Register</div></a>
         </div>
       </div>
     </div>
-
 
   </body>
 </html>

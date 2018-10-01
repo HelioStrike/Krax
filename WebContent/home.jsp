@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
-<title><%= request.getAttribute("username") %></title>
+<title>Home</title>
 <style>
 
 	#maindiv {
@@ -14,10 +14,9 @@
 	}
 
 </style>
-
 </head>
 <body>
-    <div class="ui massive secondary menu" id="indexnav">
+	<div class="ui massive secondary menu" id="indexnav">
       <div class="ui container">
       
         <a class="header item" href="/Krax/home">
@@ -29,7 +28,7 @@
           	if(request.getSession().getAttribute("username") != null)
           	{
                 out.println("<a class=\"ui item\" href=\"/Krax/newq\">Ask New Question</a>");          		
-                out.println("<a class=\"ui item\" href=\"/Krax/users?username=" + request.getAttribute("username") + "\">Profile</a>");
+                out.println("<a class=\"ui item\" href=\"/Krax/users?username=" + request.getSession().getAttribute("username") + "\">Profile</a>");
                 out.println("<a class=\"ui item\" href=\"/Krax/logout\">Logout</a>");          		
 			}
           	else
@@ -41,20 +40,6 @@
         </div>
       </div>
     </div>
-
-	<div class="ui container" id="maindiv">
-		<%
-		
-		if(request.getAttribute("fullname") != null)
-		{
-			out.println("<div class=\"ui massive header\">Username:</div> <p>" + request.getAttribute("username") + "</p>");
-			out.println("<div class=\"ui massive header\">Fullname:</div> <p>" + request.getAttribute("fullname") + "</p>");
-			out.println("<div class=\"ui massive header\">Email:</div> <p>" + request.getAttribute("email") + "</p>");
-		}
-		
-		%>	
-	</div>
-
-
+	
 </body>
 </html>
