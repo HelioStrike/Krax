@@ -66,7 +66,7 @@ public class newq extends HttpServlet {
 				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/krax?user=root","root","sunny123");  
 				
 				Statement stmt=con.createStatement();  
-				ResultSet rs=stmt.executeQuery("select * from questions where title = \'" + title + "\'");
+				ResultSet rs=stmt.executeQuery("select * from questions where title = \"" + title + "\"");
 						
 				if(rs.next())
 				{

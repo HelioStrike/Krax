@@ -56,7 +56,7 @@
                 <input type="text" name="title" placeholder="Title">
               </div>
               <div class="field">
-                <label>Password</label>
+                <label>Body</label>
                 <textarea name="body" placeholder="Body"></textarea>
               </div>
               <div class="ui center aligned container">

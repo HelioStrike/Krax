@@ -41,5 +41,27 @@
       </div>
     </div>
 	
+	<div class="ui container" id="maindiv">
+	<%
+		int ids[] = (int[]) request.getAttribute("ids");
+		String askers[] = (String[]) request.getAttribute("askers");
+		String titles[] = (String[]) request.getAttribute("titles");
+		String bodies[] = (String[]) request.getAttribute("bodies");
+		String dates[] = (String[]) request.getAttribute("dates");
+
+	%>
+	
+	<% 	for(int i = 0; i < Integer.parseInt(request.getAttribute("count").toString()); i++) { %>
+			<div class="ui segment">
+				<p><%= titles[i] %></p>
+				<p><%= bodies[i] %></p>
+				<p><%= askers[i] %></p>
+				<p><%= dates[i] %></p>
+			</div>
+	<% 	}	%>
+		
+		
+	</div>
+	
 </body>
 </html>

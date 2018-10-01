@@ -65,7 +65,7 @@ public class login extends HttpServlet {
 				session.setAttribute("username", rs.getString(3));
 				session.setAttribute("password", rs.getString(4));
 				
-			    request.getRequestDispatcher("/home").forward(request,response);
+			    response.sendRedirect("/Krax/home");
 			} else { 
 				request.setAttribute("status", 1);
 			    request.getRequestDispatcher("/login").forward(request,response);
@@ -73,7 +73,6 @@ public class login extends HttpServlet {
      
 			con.close();  			
 		} catch (Exception e) {
-			request.setAttribute("status", 2);
 			e.printStackTrace();
 		}
 				
