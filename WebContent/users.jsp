@@ -44,7 +44,7 @@
 
 	<div class="ui container" id="maindiv">
 		
-		<img src="<c:url value='/profpics/<%= request.getAttribute("profpic").toString() %>'/>">
+		<img class="ui medium circular image" src="https://theplantnewspaper.com/wp-content/uploads/2016/08/shrek.jpg" style="height:300px; width: 300px;">
 	
 		<%
 		
