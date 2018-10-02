@@ -64,6 +64,28 @@
 		
 		<%
 		
+		int askedIds[] = (int[]) request.getAttribute("askedIds");
+		String askedTitles[] = (String[]) request.getAttribute("askedTitles");
+		String askedBodies[] = (String[]) request.getAttribute("askedBodies");
+		String askedDates[] = (String[]) request.getAttribute("askedDates");
+	
+		%>
+		
+		<div class="ui massive header">Recent Questions:</div>
+		
+		<% for(int i = 0; i < Integer.parseInt(request.getAttribute("qcount").toString()); i++) { %>
+		
+		<div class="ui segment">
+			<div class="ui huge header"><a href="<%= request.getContextPath() %>/question?id=<%= askedIds[i] %>"><%= askedTitles[i] %></a></div>
+			<div class="qbody"><%= askedBodies[i] %></div>
+			<br/>
+			<div class="ui right floated"><b>Asked on:</b> <%= askedDates[i] %></div>
+		</div>
+		
+		<% } %>
+		
+		<%
+		
 		int qids[] = (int[]) request.getAttribute("qids");
 		String questions[] = (String[]) request.getAttribute("questions");
 		String bodies[] = (String[]) request.getAttribute("bodies");
@@ -71,7 +93,7 @@
 	
 		%>
 		
-		<div class="ui massive header">Answers:</div>
+		<div class="ui massive header">Recent Answers:</div>
 		
 		<% for(int i = 0; i < Integer.parseInt(request.getAttribute("acount").toString()); i++) { %>
 		

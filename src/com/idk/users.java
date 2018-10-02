@@ -55,6 +55,34 @@ public class users extends HttpServlet {
 
 				if(count > 0)
 				{
+					rs=stmt.executeQuery("select * from questions where asker = \'" + username + "\' order by dt_created desc limit 0," + count);  
+					int askedIds[] = new int[count];
+					String  askedTitles[] = new String[count];
+					String  askedBodies[] = new String[count];
+					String askedDates[] = new String[count];
+					
+					count = 0;
+					while(rs.next())
+					{
+						askedIds[count] = rs.getInt(1);
+						askedTitles[count] = rs.getString(3);
+						askedBodies[count] = rs.getString(4);
+						askedDates[count] = rs.getDate(5).toString();
+						count++;
+					}
+
+					request.setAttribute("qcount", count);
+
+					request.setAttribute("askedIds", askedIds);
+					request.setAttribute("askedTitles", askedTitles);
+					request.setAttribute("askedBodies", askedBodies);
+					request.setAttribute("askedDates", askedDates);				
+				}
+				
+				count = 5;
+				
+				if(count > 0)
+				{
 					rs=stmt.executeQuery("select * from answers where author = \'" + username + "\' order by dt_answered desc limit 0," + count);  
 					int qids[] = new int[count];
 					String  bodies[] = new String[count];
@@ -71,13 +99,6 @@ public class users extends HttpServlet {
 
 					request.setAttribute("acount", count);
 					String questions[] = new String[count];
-
-					for(int i = 0; i < count; i++)
-					{
-						System.out.println(qids[i]);
-						System.out.println(bodies[i]);
-						System.out.println(dates[i]);
-					}
 					
 					for(int i = 0; i < count; i++)
 					{
