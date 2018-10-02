@@ -28,7 +28,7 @@
     </style>
   </head>
   <body>
-    <div class="ui massive inverted secondary menu" id="indexnav">
+    <div class="ui massive secondary menu" id="indexnav">
       <div class="ui container">
       
         <a class="header item" href="/Krax/home">
@@ -36,18 +36,14 @@
         </a>
 
         <div class="right menu">
-          <%
-          	if(request.getSession().getAttribute("username") != null)
-          	{
-                out.println("<a class=\"ui item\" href=\"/Krax/users?username=" + request.getSession().getAttribute("username") + "\">Profile</a>");
-                out.println("<a class=\"ui item\" href=\"/Krax/logout\">Logout</a>");          		
-			}
-          	else
-          	{
-                out.println("<a class=\"ui item\" href=\"/Krax/login\">Login</a>");
-                out.println("<a class=\"ui item\" href=\"/Krax/register\">Register</a>");
-          	}
-          %>
+          <% if(request.getSession().getAttribute("username") != null) { %>
+                <a class="ui item" href="/Krax/newq" style="color:white;">Ask New Question</a>          		
+                <a class="ui item" href="/Krax/users?username=<%= request.getSession().getAttribute("username") %>" style="color:white;">Profile</a>
+                <a class="ui item" href="/Krax/logout" style="color:white;">Logout</a>         		
+		  <% } else { %>
+                <a class="ui item" href="/Krax/login" style="color:white;">Login</a>
+                <a class="ui item" href="/Krax/register" style="color:white;">Register</a>
+          <% } %>
         </div>
       </div>
     </div>
@@ -56,7 +52,7 @@
       <div class="column">
         <div class="ui center aligned container">
           <div class="ui massive header" id="midtxt">
-              Get Started.
+              Start asking.
           </div>
           <a href="/Krax/login"><div class="ui massive button inverted">Login</div></a>
           <a href="/Krax/register"><div class="ui massive button inverted">Register</div></a>
