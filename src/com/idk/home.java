@@ -77,7 +77,9 @@ public class home extends HttpServlet {
 					dates[count] = rs.getDate(5).toString();
 					count++;
 				}
-				
+
+				request.setAttribute("start", start);
+				request.setAttribute("diff", dif);
 				request.setAttribute("ids", ids);
 				request.setAttribute("askers", askers);
 				request.setAttribute("titles", titles);

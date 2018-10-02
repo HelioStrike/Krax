@@ -64,6 +64,7 @@
 			</div>
 	<% 	}	%>
 		
+	<a href="/Krax/home?start=<%= (Integer.parseInt(request.getAttribute("start").toString()) + Integer.parseInt(request.getAttribute("diff").toString()))  %>&diff=<%= request.getAttribute("diff") %>"><div class="ui button">Next</div></a>
 		
 	</div>
 	

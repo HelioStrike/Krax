@@ -50,6 +50,31 @@ public class question extends HttpServlet {
 				request.setAttribute("title", rs.getString(3));
 				request.setAttribute("body", rs.getString(4));
 				request.setAttribute("dt_created", rs.getDate(5).toString());
+
+				rs=stmt.executeQuery("select count(1) from answers where qid = \'" + id + "\'"); rs.next();
+				int count = rs.getInt(1); 
+				request.setAttribute("acount", count);
+
+				if(count > 0)
+				{
+					rs=stmt.executeQuery("select * from answers where qid = \'" + id + "\'");  
+					String authors[] = new String[count];
+					String  bodies[] = new String[count];
+					String dates[] = new String[count];
+					
+					count = 0;
+					while(rs.next())
+					{
+						authors[count] = rs.getString(2);
+						bodies[count] = rs.getString(3);
+						dates[count] = rs.getDate(4).toString();
+						count++;
+					}
+					
+					request.setAttribute("authors", authors);
+					request.setAttribute("bodies", bodies);
+					request.setAttribute("dates", dates);				
+				}
 				
 			    request.getRequestDispatcher("question.jsp").forward(request,response);
 			} else { 

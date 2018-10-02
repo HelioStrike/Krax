@@ -47,6 +47,7 @@ public class users extends HttpServlet {
 				request.setAttribute("fullname", rs.getString(1));
 				request.setAttribute("email", rs.getString(2));
 				request.setAttribute("username", rs.getString(3));
+				request.setAttribute("profpic", rs.getString(5));
 				request.getRequestDispatcher("users.jsp").forward(request,response);
 			}
 			else

@@ -43,6 +43,9 @@
     </div>
 
 	<div class="ui container" id="maindiv">
+		
+		<img src="<c:url value='/profpics/<%= request.getAttribute("profpic").toString() %>'/>">
+	
 		<%
 		
 		if(request.getAttribute("fullname") != null)

@@ -45,10 +45,10 @@
         <div class="ui text container">
           <div class="ui segment">
             <div class="ui center aligned huge header">Answer</div>
-            <form class="ui form" action="answer/<%= request.getAttribute("qid") %>" method="post">
+            <form class="ui form" action="answer" method="post">
               <div class="field">
                 <label>Answer</label>
-                <textarea name="Answer" placeholder="Answer"></textarea>
+                <textarea name="body" placeholder="Answer"></textarea>
               </div>
               <div class="ui center aligned container">
                 <button class="ui button" type="submit">Submit</button>
