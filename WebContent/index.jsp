@@ -37,12 +37,12 @@
 
         <div class="right menu">
           <% if(request.getSession().getAttribute("username") != null) { %>
-                <a class="ui item" href="/Krax/newq" style="color:white;">Ask New Question</a>          		
-                <a class="ui item" href="/Krax/users?username=<%= request.getSession().getAttribute("username") %>" style="color:white;">Profile</a>
-                <a class="ui item" href="/Krax/logout" style="color:white;">Logout</a>         		
+                <a class="ui item" href="<%= request.getContextPath() %>/newq" style="color:white;">Ask New Question</a>          		
+                <a class="ui item" href="<%= request.getContextPath() %>/users?username=<%= request.getSession().getAttribute("username") %>" style="color:white;">Profile</a>
+                <a class="ui item" href="<%= request.getContextPath() %>/logout" style="color:white;">Logout</a>         		
 		  <% } else { %>
-                <a class="ui item" href="/Krax/login" style="color:white;">Login</a>
-                <a class="ui item" href="/Krax/register" style="color:white;">Register</a>
+                <a class="ui item" href="<%= request.getContextPath() %>/login" style="color:white;">Login</a>
+                <a class="ui item" href="<%= request.getContextPath() %>/register" style="color:white;">Register</a>
           <% } %>
         </div>
       </div>
@@ -54,8 +54,8 @@
           <div class="ui massive header" id="midtxt">
               Start asking.
           </div>
-          <a href="/Krax/login"><div class="ui massive button inverted">Login</div></a>
-          <a href="/Krax/register"><div class="ui massive button inverted">Register</div></a>
+          <a href="<%= request.getContextPath() %>/login"><div class="ui massive button inverted">Login</div></a>
+          <a href="<%= request.getContextPath() %>/register"><div class="ui massive button inverted">Register</div></a>
         </div>
       </div>
     </div>

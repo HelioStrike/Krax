@@ -36,7 +36,7 @@ public class question extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String id = request.getParameter("id");
-		
+				
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");  
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/krax?user=root","root","sunny123");  

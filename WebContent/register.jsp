@@ -23,12 +23,12 @@
 
         <div class="right menu">
           <% if(request.getSession().getAttribute("username") != null) { %>
-                <a class="ui item" href="/Krax/newq">Ask New Question</a>          		
-                <a class="ui item" href="/Krax/users?username=<%= request.getSession().getAttribute("username") %>">Profile</a>
-                <a class="ui item" href="/Krax/logout">Logout</a>         		
+                <a class="ui item" href="<%= request.getContextPath() %>/newq">Ask New Question</a>          		
+                <a class="ui item" href="<%= request.getContextPath() %>/users?username=<%= request.getSession().getAttribute("username") %>">Profile</a>
+                <a class="ui item" href="<%= request.getContextPath() %>/logout">Logout</a>         		
 		  <% } else { %>
-                <a class="ui item" href="/Krax/login">Login</a>
-                <a class="ui item" href="/Krax/register">Register</a>
+                <a class="ui item" href="<%= request.getContextPath() %>/login">Login</a>
+                <a class="ui item" href="<%= request.getContextPath() %>/register">Register</a>
           <% } %>
         </div>
       </div>
@@ -55,7 +55,7 @@
               </div>
               <div class="field">
                 <label>Password</label>
-                <input type="text" name="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password">
               </div>
               <div class="ui center aligned container">
                 <div class="field">
