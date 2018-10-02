@@ -44,7 +44,17 @@
 
 	<div class="ui container" id="maindiv">
 		
-		<img class="ui medium circular image" src="https://theplantnewspaper.com/wp-content/uploads/2016/08/shrek.jpg" style="height:300px; width: 300px;">
+		<img class="ui medium circular image" src="http://localhost:8080/krax/profpics/shrek.jpg" style="height:300px; width: 300px;">
+	
+		<form class="ui form" action="uploadprofpic" method="post">
+           <div class="field" style="width:15vw;">
+             <label>Select file to upload:</label>
+             <input type="file" name="filename">
+           </div>
+           <div>
+             <button class="ui button" type="submit">Submit</button>
+           </div>
+        </form>
 	
 		<%
 		
