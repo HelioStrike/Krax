@@ -39,8 +39,10 @@ public class users extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");  
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/krax?user=root","root","sunny123");  
 
+			String username = request.getParameter("username");
+			
 			Statement stmt=con.createStatement();  
-			ResultSet rs=stmt.executeQuery("select * from users where username = \'" + request.getParameter("username") + "\'");  
+			ResultSet rs=stmt.executeQuery("select * from users where username = \'" + username + "\'");  
 			
 			if(rs.next())
 			{
@@ -48,7 +50,50 @@ public class users extends HttpServlet {
 				request.setAttribute("email", rs.getString(2));
 				request.setAttribute("username", rs.getString(3));
 				request.setAttribute("profpic", rs.getString(5));
+				
+				int count = 5; 
+
+				if(count > 0)
+				{
+					rs=stmt.executeQuery("select * from answers where author = \'" + username + "\' order by dt_answered desc limit 0," + count);  
+					int qids[] = new int[count];
+					String  bodies[] = new String[count];
+					String dates[] = new String[count];
+					
+					count = 0;
+					while(rs.next())
+					{
+						qids[count] = rs.getInt(1);
+						bodies[count] = rs.getString(3);
+						dates[count] = rs.getDate(4).toString();
+						count++;
+					}
+
+					request.setAttribute("acount", count);
+					String questions[] = new String[count];
+
+					for(int i = 0; i < count; i++)
+					{
+						System.out.println(qids[i]);
+						System.out.println(bodies[i]);
+						System.out.println(dates[i]);
+					}
+					
+					for(int i = 0; i < count; i++)
+					{
+						rs=stmt.executeQuery("select * from questions where id = \'" + qids[i] + "\'");  
+						rs.next();
+						questions[i] = rs.getString(3);
+					}
+
+					request.setAttribute("qids", qids);
+					request.setAttribute("questions", questions);
+					request.setAttribute("bodies", bodies);
+					request.setAttribute("dates", dates);				
+				}
+				
 				request.getRequestDispatcher("users.jsp").forward(request,response);
+
 			}
 			else
 			{

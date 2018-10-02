@@ -9,8 +9,13 @@
 <style>
 
 	#maindiv {
-		margin-top:15vh;
+		margin:15vh;
 		font-size: 20px;
+	}
+
+	.qbody {
+		font-size: 18px;
+		margin:20px;
 	}
 
 </style>
@@ -56,6 +61,28 @@
 		}
 		
 		%>	
+		
+		<%
+		
+		int qids[] = (int[]) request.getAttribute("qids");
+		String questions[] = (String[]) request.getAttribute("questions");
+		String bodies[] = (String[]) request.getAttribute("bodies");
+		String dates[] = (String[]) request.getAttribute("dates");
+	
+		%>
+		
+		<div class="ui massive header">Answers:</div>
+		
+		<% for(int i = 0; i < Integer.parseInt(request.getAttribute("acount").toString()); i++) { %>
+		
+		<div class="ui segment">
+			<div class="ui huge header"><a href="<%= request.getContextPath() %>/question?id=<%= qids[i] %>"><%= questions[i] %></a></div>
+			<div class="qbody"><%= bodies[i] %></div>
+			<br/>
+			<div class="ui right floated"><b>Answered on:</b> <%= dates[i] %></div>
+		</div>
+		
+		<% } %>
 	</div>
 
 
