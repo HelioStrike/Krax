@@ -52,6 +52,11 @@ public class home extends HttpServlet {
 				
 				int diff = Integer.parseInt(dif);
 				
+				if(Integer.parseInt(start) < 0)
+				{
+					start = "0";
+				}
+				
 				if(diff > 20)
 				{
 					dif = Integer.toString(20);

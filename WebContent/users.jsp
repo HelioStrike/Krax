@@ -44,11 +44,13 @@
 
 	<div class="ui container" id="maindiv">
 		
-		<img class="ui medium circular image" src="http://localhost:8080/krax/profpics/shrek.jpg" style="height:300px; width: 300px;">
+		<img class="ui medium circular image" src="http://localhost:8080/krax/profpics/<%= request.getAttribute("profpic") %>" style="height:300px; width: 300px;">
 	
-		<form class="ui form" action="uploadprofpic" method="post">
+		<% if(request.getAttribute("username").equals(request.getSession().getAttribute("username"))) { %>
+		
+		<form class="ui form" action="uploadprofpic" enctype="multipart/form-data" method="post">
            <div class="field" style="width:15vw;">
-             <label>Select file to upload:</label>
+             <label>Change picture:</label>
              <input type="file" name="filename">
            </div>
            <div>
@@ -56,6 +58,8 @@
            </div>
         </form>
 	
+		<% } %>
+		
 		<%
 		
 		if(request.getAttribute("fullname") != null)
