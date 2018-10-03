@@ -78,8 +78,6 @@ public class uploadprofpic extends HttpServlet {
 
 				  Statement stmt=con.createStatement();  
 				  stmt.executeUpdate("update users set profpic = \'" + imageName + "\' where username = \'" + request.getSession().getAttribute("username") + "\'");  
-
-				  System.out.println("update users set profpic = \'" + imageName + "\' where username = \'" + request.getSession().getAttribute("username") + "\'");
 				  
 				  con.close();
 	    	  }
