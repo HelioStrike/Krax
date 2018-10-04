@@ -71,6 +71,22 @@
                 <button class="ui button" type="submit">Submit</button>
               </div>
             </form>
+            
+            <% if((int)request.getAttribute("status") == 1) { %>            
+	        <div class="ui red info message">
+				Fill up all boxes, check the T&C, and re-enter the password correctly!
+			</div>
+			<% } else if ((int)request.getAttribute("status") == 2) { %>
+	        <div class="ui red info message">
+			    An error has occurred.
+			</div>
+			<% } else if ((int)request.getAttribute("status") == 3) { %>
+	        <div class="ui red info message">
+			    Username taken!
+			</div>
+			<% } %>			
+            
+            
           </div>
         </div>
         <div class="ui center aligned container" style="margin-top:3vh;">

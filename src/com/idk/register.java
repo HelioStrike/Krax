@@ -34,14 +34,14 @@ public class register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		if(session.getAttribute("username") != null)
+		if(request.getSession().getAttribute("username") != null)
 		{
-		    request.getRequestDispatcher("/home").forward(request,response);		
+		    response.sendRedirect(request.getContextPath() + "/home");		
 		}
 		else
 		{
-			response.sendRedirect("register.jsp");
+			request.setAttribute("status", 0);
+			request.getRequestDispatcher("register.jsp").forward(request,  response);;
 		}
 	}
 
@@ -57,9 +57,13 @@ public class register extends HttpServlet {
 		String password = request.getParameter("password");
 		String cpassword = request.getParameter("cpassword");
 		
+		request.setAttribute("status", 0);
+
 		//status 0 - success
 		//status 1 - form not filled completely
-		if(fullname.equals("")||email.equals("")||username.equals("")||password.equals("")||request.getParameter("tnc")==null||!password.equals("cpassword"))
+		//status 2 - an error has occurred
+		//status 3 - username taken
+		if(fullname.equals("")||email.equals("")||username.equals("")||password.equals("")||request.getParameter("tnc")==null||!password.equals(cpassword))
 		{
 			request.setAttribute("status", 1);
 		    request.getRequestDispatcher("register.jsp").forward(request,response);
@@ -70,11 +74,12 @@ public class register extends HttpServlet {
 				Class.forName("com.mysql.cj.jdbc.Driver");  
 				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/krax?user=root","root","sunny123");  
 				
-				Statement stmt=con.createStatement();  
-				ResultSet rs=stmt.executeQuery("select * from users where username = \'" + username + "\'");
+				Statement st=con.createStatement();  
+				ResultSet rs=st.executeQuery("select * from users where username = \'" + username + "\'");
 				if(rs.next())
 				{
-					response.sendRedirect(request.getContextPath() + "/register");
+					request.setAttribute("status", 3);
+				    request.getRequestDispatcher("register.jsp").forward(request,response);
 				}
 				else
 				{
@@ -94,7 +99,7 @@ public class register extends HttpServlet {
 				con.close();  
 			} catch(Exception e) {
 				e.printStackTrace();
-				request.setAttribute("status", 0);
+				request.setAttribute("status", 2);
 			    request.getRequestDispatcher("register.jsp").forward(request,response);
 			}
 			
