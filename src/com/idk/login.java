@@ -32,25 +32,36 @@ public class login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		if(session.getAttribute("username") != null)
+		if(request.getSession().getAttribute("username") != null)
 		{
-		    request.getRequestDispatcher("/home").forward(request,response);		
+		    response.sendRedirect(request.getContextPath() + "/home");;		
 		}
 		else
 		{
-			response.sendRedirect("login.jsp");
+			request.setAttribute("status", 0);
+		    request.getRequestDispatcher("login.jsp").forward(request,response);		
 		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
+	/*
+	 
+	 STATUS CODES:
+	 1 - Wrong username or password.
+	 2 - An error occurred.
+	 
+	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
+
+		request.setAttribute("status", 0);
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");  
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/krax?user=root","root","sunny123");  
@@ -65,15 +76,16 @@ public class login extends HttpServlet {
 				session.setAttribute("username", rs.getString(3));
 				session.setAttribute("password", rs.getString(4));
 				
-			    response.sendRedirect("/Krax/home");
+			    response.sendRedirect(request.getContextPath() + "/home");
 			} else { 
 				request.setAttribute("status", 1);
-			    request.getRequestDispatcher("/login").forward(request,response);
+			    request.getRequestDispatcher("login.jsp").forward(request,  response);;
 			}
      
 			con.close();  			
 		} catch (Exception e) {
-			e.printStackTrace();
+			request.setAttribute("status", 2);
+		    request.getRequestDispatcher("login.jsp").forward(request,  response);;
 		}
 				
 		

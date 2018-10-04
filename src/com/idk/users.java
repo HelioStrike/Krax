@@ -43,13 +43,14 @@ public class users extends HttpServlet {
 			
 			Statement stmt=con.createStatement();  
 			ResultSet rs=stmt.executeQuery("select * from users where username = \'" + username + "\'");  
-			
+				
 			if(rs.next())
 			{
 				request.setAttribute("fullname", rs.getString(1));
 				request.setAttribute("email", rs.getString(2));
 				request.setAttribute("username", rs.getString(3));
 				request.setAttribute("profpic", rs.getString(5));
+			
 				
 				int count = 5; 
 

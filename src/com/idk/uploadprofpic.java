@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
@@ -51,7 +50,7 @@ public class uploadprofpic extends HttpServlet {
 	    String filePath = "/home/krypt/ProgramFiles/apache-tomcat/apache-tomcat-8.5.34/webapps/krax/profpics/";  
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-	      factory.setSizeThreshold(4*1024);
+	      factory.setSizeThreshold(250*1024);
 	      ServletFileUpload upload = new ServletFileUpload(factory);
 	      upload.setSizeMax(250*1024);
 	      
@@ -82,11 +81,11 @@ public class uploadprofpic extends HttpServlet {
 				  con.close();
 	    	  }
 	    	  
-	    	  response.sendRedirect("/Krax/users?username=" + request.getSession().getAttribute("username"));
+	    	  response.sendRedirect(request.getContextPath() + "/users?username=" + request.getSession().getAttribute("username"));
 	    	  
 	      } catch (Exception e) {
 	    	  e.printStackTrace();
-	    	  response.sendRedirect("/Krax/users?username=" + request.getSession().getAttribute("username"));
+	    	  response.sendRedirect(request.getContextPath() + "/users?username=" + request.getSession().getAttribute("username"));
 	      }
 	}
 

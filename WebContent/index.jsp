@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="ISO-8859-1">
-    <title>Login</title>
+    <title>Krax</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
     <style>
       body {
@@ -31,7 +31,7 @@
     <div class="ui massive secondary menu" id="indexnav">
       <div class="ui container">
       
-        <a class="header item" href="/Krax/home">
+        <a class="header item" href="<%= request.getContextPath() %>/home">
           <p class="menu-btn" style="color: white; font-size:30px; margin: 10px;"><i class="angle double right icon"></i>Krax</p>
         </a>
 

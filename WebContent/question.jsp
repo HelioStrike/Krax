@@ -24,7 +24,7 @@
     <div class="ui massive inverted menu" id="indexnav">
       <div class="ui container">
       
-        <a class="header item" href="/Krax/home">
+        <a class="header item" href="<%= request.getContextPath() %>/home">
           <p class="menu-btn" style="font-size:30px; margin: 10px;"><i class="angle double right icon"></i>Krax</p>
         </a>
 
@@ -50,12 +50,12 @@
 
 	<div class="ui container" id="maindiv">
 		<div class="ui segment">
-			<div class="ui huge header"><a href="/Krax/question?id=<%= request.getAttribute("id") %>"><%= request.getAttribute("title") %></a></div>
+			<div class="ui huge header"><a href="<%= request.getContextPath() %>/question?id=<%= request.getAttribute("id") %>"><%= request.getAttribute("title") %></a></div>
 			<div class="qbody"><%= request.getAttribute("body") %></div>
-			<div class="ui right floated">-<a href="/Krax/users?username=<%= request.getAttribute("asker") %>"><%= request.getAttribute("asker") %></a></div>
+			<div class="ui right floated">-<a href="<%= request.getContextPath() %>/users?username=<%= request.getAttribute("asker") %>"><%= request.getAttribute("asker") %></a></div>
 			<br/>
 			<div class="ui right floated"><b>Asked on:</b> <%= request.getAttribute("dt_created") %></div>
-			<a href="/Krax/answer?id=<%= request.getAttribute("id") %>"><div class="ui button right floated" style="margin: 30px;">Answer</div></a>
+			<a href="<%= request.getContextPath() %>/answer?id=<%= request.getAttribute("id") %>"><div class="ui button right floated" style="margin: 30px;">Answer</div></a>
 		</div>
 		
 		<br/>
@@ -65,7 +65,7 @@
 		
 		<div class="ui segment">
 			<div class="qbody"><%= bodies[i] %></div>
-			<div class="ui right floated">-<a href="/Krax/users?username=<%= authors[i] %>"><%= authors[i] %></a></div>
+			<div class="ui right floated">-<a href="<%= request.getContextPath() %>/users?username=<%= authors[i] %>"><%= authors[i] %></a></div>
 			<br/>
 			<div class="ui right floated"><b>Answered on:</b> <%= dates[i] %></div>
 		</div>

@@ -25,7 +25,7 @@
     <div class="ui massive inverted menu" id="indexnav">
       <div class="ui container">
       
-        <a class="header item" href="/Krax/home">
+        <a class="header item" href="<%= request.getContextPath() %>/home">
           <p class="menu-btn" style="font-size:30px; margin: 10px;"><i class="angle double right icon"></i>Krax</p>
         </a>
 

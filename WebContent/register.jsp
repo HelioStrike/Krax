@@ -57,6 +57,10 @@
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Password">
               </div>
+              <div class="field">
+                <label>Re-enter Password</label>
+                <input type="password" name="cpassword" placeholder="Re-enter Password">
+              </div>
               <div class="ui center aligned container">
                 <div class="field">
                   <div class="ui checkbox">
@@ -71,7 +75,7 @@
         </div>
         <div class="ui center aligned container" style="margin-top:3vh;">
         	<p>Already registered?</p>
-        	<a href="/Krax/login"><button class="ui button">Sign In</button></a>
+        	<a href="<%= request.getContextPath() %>/login"><button class="ui button">Sign In</button></a>
         </div>
       </div>
     </div>

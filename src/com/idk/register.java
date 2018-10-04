@@ -55,10 +55,11 @@ public class register extends HttpServlet {
 		String email = request.getParameter("email");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String cpassword = request.getParameter("cpassword");
 		
 		//status 0 - success
 		//status 1 - form not filled completely
-		if(fullname.equals("")||email.equals("")||username.equals("")||password.equals("")||request.getParameter("tnc")==null)
+		if(fullname.equals("")||email.equals("")||username.equals("")||password.equals("")||request.getParameter("tnc")==null||!password.equals("cpassword"))
 		{
 			request.setAttribute("status", 1);
 		    request.getRequestDispatcher("register.jsp").forward(request,response);
@@ -73,7 +74,7 @@ public class register extends HttpServlet {
 				ResultSet rs=stmt.executeQuery("select * from users where username = \'" + username + "\'");
 				if(rs.next())
 				{
-					response.sendRedirect("/Krax/register");
+					response.sendRedirect(request.getContextPath() + "/register");
 				}
 				else
 				{
@@ -87,7 +88,7 @@ public class register extends HttpServlet {
 					preparedStmt.setString(4, password);
 		
 					preparedStmt.execute();
-					response.sendRedirect("/Krax/login");
+					response.sendRedirect(request.getContextPath() + "/login");
 				}
 				      
 				con.close();  
