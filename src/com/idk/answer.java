@@ -33,6 +33,7 @@ public class answer extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
 		request.getSession().setAttribute("qid", request.getParameter("id").toString());
 		

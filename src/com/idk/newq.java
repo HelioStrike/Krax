@@ -33,14 +33,14 @@ public class newq extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		if(request.getSession().getAttribute("username") != null)
+		 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		 if(request.getSession().getAttribute("username") != null)
 		{
 			request.getRequestDispatcher("newq.jsp").forward(request, response);
 		}
 		else
 		{
-			response.sendRedirect("/home");
+			response.sendRedirect(request.getContextPath() + "/home");
 		}
 	}
 

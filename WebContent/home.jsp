@@ -59,7 +59,7 @@
 			</div>
 	<% 	}	%>
 		
-	<a href="<%= request.getContextPath() %>/home?start=<%= (Integer.parseInt(request.getAttribute("start").toString()) - Integer.parseInt(request.getAttribute("diff").toString()))  %>&diff=<%= request.getAttribute("diff") %>"><div class="ui button">Next</div></a>
+	<a href="<%= request.getContextPath() %>/home?start=<%= (Integer.parseInt(request.getAttribute("start").toString()) - Integer.parseInt(request.getAttribute("diff").toString()))  %>&diff=<%= request.getAttribute("diff") %>"><div class="ui button">Prev</div></a>
 	<a href="<%= request.getContextPath() %>/home?start=<%= (Integer.parseInt(request.getAttribute("start").toString()) + Integer.parseInt(request.getAttribute("diff").toString()))  %>&diff=<%= request.getAttribute("diff") %>"><div class="ui button">Next</div></a>
 		
 	</div>
