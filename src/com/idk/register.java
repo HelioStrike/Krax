@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class register
  */
-//@WebServlet("/register")
+@WebServlet("/register")
 public class register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

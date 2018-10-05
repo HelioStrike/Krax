@@ -47,8 +47,8 @@ public class uploadprofpic extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	    String filePath = "/home/krypt/ProgramFiles/apache-tomcat/apache-tomcat-8.5.34/webapps/krax/profpics/";  
-		
+ 	  String filePath = "/home/krypt/ProgramFiles/apache-tomcat/apache-tomcat-8.5.34/webapps/krax/profpics/";  		
+
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 	      factory.setSizeThreshold(250*1024);
 	      ServletFileUpload upload = new ServletFileUpload(factory);
@@ -81,6 +81,7 @@ public class uploadprofpic extends HttpServlet {
 				  con.close();
 	    	  }
 	    	  
+  
 	    	  response.sendRedirect(request.getContextPath() + "/users?username=" + request.getSession().getAttribute("username"));
 	    	  
 	      } catch (Exception e) {
